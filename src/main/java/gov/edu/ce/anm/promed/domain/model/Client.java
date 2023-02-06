@@ -1,8 +1,7 @@
 package gov.edu.ce.anm.promed.domain.model;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.*;
+
 import lombok.*;
 
 @Entity

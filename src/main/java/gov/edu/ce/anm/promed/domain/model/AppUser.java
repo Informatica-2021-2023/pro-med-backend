@@ -5,17 +5,22 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
 import gov.edu.ce.anm.promed.domain.enums.AppUserRole;
 import gov.edu.ce.anm.promed.domain.enums.Gender;
 import gov.edu.ce.anm.promed.utils.CustomInstantDeserializer;
 import gov.edu.ce.anm.promed.utils.CustomInstantSerializer;
+
 import jakarta.persistence.*;
 
 import javax.validation.constraints.*;
+
 import lombok.*;
+
 import org.hibernate.annotations.GenericGenerator;
 
-import java.time.Instant;
+import java.time.LocalDate;
+
 import java.util.UUID;
 
 @Entity
@@ -53,7 +58,7 @@ public abstract class AppUser {
     @NotNull
     @JsonSerialize(using = CustomInstantSerializer.class)
     @JsonDeserialize(using = CustomInstantDeserializer.class)
-    private Instant birthDate;
+    private LocalDate birthDate;
 
     @Column
     @NotNull

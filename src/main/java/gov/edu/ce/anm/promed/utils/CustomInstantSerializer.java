@@ -5,16 +5,14 @@ import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.SerializerProvider;
 
 import java.io.IOException;
-import java.time.Instant;
+
 import java.time.LocalDate;
-import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 
-public class CustomInstantSerializer extends JsonSerializer<Instant> {
+public class CustomInstantSerializer extends JsonSerializer<LocalDate> {
 
     @Override
-    public void serialize(Instant instant, JsonGenerator jsonGenerator, SerializerProvider serializerProvider) throws IOException {
-        LocalDate localDate = instant.atZone(ZoneId.systemDefault()).toLocalDate();
+    public void serialize(LocalDate localDate, JsonGenerator jsonGenerator, SerializerProvider serializerProvider) throws IOException {
         jsonGenerator.writeString(localDate.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
     }
 }

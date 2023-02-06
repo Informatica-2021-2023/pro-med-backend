@@ -2,6 +2,7 @@ package gov.edu.ce.anm.promed.controllers;
 
 import gov.edu.ce.anm.promed.domain.model.MedicalHistoric;
 import gov.edu.ce.anm.promed.services.MedicalHistoricService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

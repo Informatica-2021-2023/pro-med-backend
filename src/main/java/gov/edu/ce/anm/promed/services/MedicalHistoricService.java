@@ -2,7 +2,9 @@ package gov.edu.ce.anm.promed.services;
 
 import gov.edu.ce.anm.promed.domain.model.MedicalHistoric;
 import gov.edu.ce.anm.promed.repositories.MedicalHistoricRepository;
+
 import jakarta.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

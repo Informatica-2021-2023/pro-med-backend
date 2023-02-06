@@ -1,6 +1,7 @@
 package gov.edu.ce.anm.promed.domain.model;
 
 import jakarta.persistence.*;
+
 import lombok.*;
 
 import javax.validation.constraints.*;
