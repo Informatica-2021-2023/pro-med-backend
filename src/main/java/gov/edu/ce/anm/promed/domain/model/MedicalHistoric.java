@@ -3,8 +3,6 @@ package gov.edu.ce.anm.promed.domain.model;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.List;
-
 @Entity
 @Data
 @AllArgsConstructor
@@ -17,15 +15,16 @@ public class MedicalHistoric {
 
     private String bloodType;
 
-    private List<String> prescriptionDrugs;
+    private String prescriptionDrugs;
 
-    private List<String> allergies;
+    private String drugAllergies;
 
-    private List<String> priorHospitalization;
+    private String hospitalizationHistoric;
 
-    private List<String> psychiatricIllnesses;
+    private String surgeriesHistoric;
 
-    private List<String> chronicDiseases;
+    private String priorDiseases;
 
-    private List<String> treatments;
+    private String extraNotes;
+
 }
