@@ -1,14 +1,21 @@
 package gov.edu.ce.anm.promed.domain.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import gov.edu.ce.anm.promed.domain.enums.AppUserRole;
 import gov.edu.ce.anm.promed.domain.enums.Gender;
+import gov.edu.ce.anm.promed.utils.CustomInstantDeserializer;
+import gov.edu.ce.anm.promed.utils.CustomInstantSerializer;
 import jakarta.persistence.*;
 
 import javax.validation.constraints.*;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 
-import java.util.Date;
+import java.time.Instant;
 import java.util.UUID;
 
 @Entity
@@ -16,6 +23,13 @@ import java.util.UUID;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@JsonIgnoreProperties(ignoreUnknown = true)
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY)
+@JsonSubTypes({
+        @JsonSubTypes.Type(value = Admin.class, name = "Admin"),
+        @JsonSubTypes.Type(value = Client.class, name = "Client"),
+        @JsonSubTypes.Type(value = Doctor.class, name = "Doctor")
+})
 public abstract class AppUser {
 
     @Id
@@ -37,7 +51,9 @@ public abstract class AppUser {
 
     @Column
     @NotNull
-    private Date birthDate;
+    @JsonSerialize(using = CustomInstantSerializer.class)
+    @JsonDeserialize(using = CustomInstantDeserializer.class)
+    private Instant birthDate;
 
     @Column
     @NotNull
@@ -49,6 +65,7 @@ public abstract class AppUser {
     private String phoneNumber;
 
     @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "address_id")
     private Address address;
 
     @Column
