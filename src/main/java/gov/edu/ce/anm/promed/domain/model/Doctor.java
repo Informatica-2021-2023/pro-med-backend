@@ -1,8 +1,10 @@
 package gov.edu.ce.anm.promed.domain.model;
 
-import jakarta.persistence.Entity;
+import jakarta.persistence.*;
 
 import lombok.*;
+
+import java.util.List;
 
 @Entity
 @Getter
@@ -12,4 +14,7 @@ import lombok.*;
 public class Doctor extends AppUser{
 
     private String specialization;
+
+    @OneToMany(mappedBy = "id.doctor", cascade = CascadeType.ALL)
+    private List<MedicalAppointment> appointments;
 }

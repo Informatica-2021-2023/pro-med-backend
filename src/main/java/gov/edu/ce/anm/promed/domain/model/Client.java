@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 
 import lombok.*;
 
+import java.util.List;
+
 @Entity
 @Getter
 @Setter
@@ -13,4 +15,7 @@ public class Client extends AppUser{
 
     @OneToOne(cascade = CascadeType.ALL)
     private MedicalHistoric medicalHistoric;
+
+    @OneToMany(mappedBy = "id.client", cascade = CascadeType.ALL)
+    private List<MedicalAppointment> appointments;
 }
