@@ -1,10 +1,13 @@
 package gov.edu.ce.anm.promed.domain.model;
 
+import gov.edu.ce.anm.promed.domain.enums.BloodType;
+
 import jakarta.persistence.*;
 
 import lombok.*;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Data
@@ -17,8 +20,8 @@ public class MedicalHistoric {
     private Long id;
 
     @Column
-    @NotBlank
-    private String bloodType;
+    @NotNull
+    private BloodType bloodType;
 
     @Column
     @NotBlank
