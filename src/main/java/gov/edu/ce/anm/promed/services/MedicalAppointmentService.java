@@ -10,14 +10,18 @@ import gov.edu.ce.anm.promed.repositories.MedicalAppointmentRepository;
 import jakarta.transaction.Transactional;
 
 import org.jetbrains.annotations.NotNull;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.UUID;
+import java.time.LocalTime;
+
+import java.util.*;
 
 @Service
 public class MedicalAppointmentService {
+
+    private static final Integer BRASILIA_OFFSET = -3;
 
     @Autowired
     private MedicalAppointmentRepository medicalAppointmentRepository;
@@ -43,4 +47,15 @@ public class MedicalAppointmentService {
                 ((Doctor) appUserRepository.findById(doctorId).get())));
         return medicalAppointmentRepository.save(medicalAppointment);
     }
+
+    public List<LocalTime> getAppointmentsSchedules() {
+        return Arrays.asList(LocalTime.of(7,0), LocalTime.of(8,0), LocalTime.of(9,0),
+                LocalTime.of(10,0), LocalTime.of(13,0), LocalTime.of(14,0),
+                LocalTime.of(15,0), LocalTime.of(16,0), LocalTime.of(17,0));
+    }
+
+    public Integer getSchedulesOffset() {
+        return BRASILIA_OFFSET;
+    }
+
 }

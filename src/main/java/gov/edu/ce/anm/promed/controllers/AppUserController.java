@@ -6,6 +6,9 @@ import gov.edu.ce.anm.promed.services.AppUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.Instant;
+import java.time.LocalDate;
+
 import java.util.*;
 
 @RestController
@@ -38,5 +41,15 @@ public class AppUserController {
     @DeleteMapping("{id}")
     public void deleteUser(@PathVariable UUID id) {
         appUserService.deleteUserById(id);
+    }
+
+    @GetMapping("global-dates")
+    public Map<String, Instant> getSchedulesAsGlobalDates(@RequestParam("date") LocalDate localDate) {
+        return appUserService.getSchedulesAsGlobalDates(localDate);
+    }
+
+    @GetMapping("check-days")
+    public Map<String, Boolean> checkDaySchedulesAvailability(@RequestParam("doctor_id") UUID id, @RequestParam("date") LocalDate localDate) {
+        return appUserService.checkDaySchedulesAvailability(id, localDate);
     }
 }
