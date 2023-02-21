@@ -43,11 +43,6 @@ public class AppUserController {
         appUserService.deleteUserById(id);
     }
 
-    @GetMapping("global-dates")
-    public Map<String, Instant> getSchedulesAsGlobalDates(@RequestParam("date") LocalDate localDate) {
-        return appUserService.getSchedulesAsGlobalDates(localDate);
-    }
-
     @GetMapping("check-days")
     public Map<String, Boolean> checkDaySchedulesAvailability(@RequestParam("doctor_id") UUID id, @RequestParam("date") LocalDate localDate) {
         return appUserService.checkDaySchedulesAvailability(id, localDate);
