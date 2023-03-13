@@ -2,8 +2,7 @@ package gov.edu.ce.anm.promed.domain.medicalAppointment;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import jakarta.persistence.EmbeddedId;
-import jakarta.persistence.Entity;
+import jakarta.persistence.*;
 
 import lombok.*;
 
@@ -22,4 +21,16 @@ public class MedicalAppointment {
     private Instant date;
 
     private AppointmentType type;
+
+    @Transient
+    @Enumerated(EnumType.STRING)
+    private AppointmentStatus appointmentStatus;
+
+    public AppointmentStatus getAppointmentStatus() {
+        setAppointmentStatus(AppointmentStatus.SCHEDULED);
+        if(date.isAfter(Instant.now())) {
+            setAppointmentStatus(AppointmentStatus.PAID);
+        }
+        return appointmentStatus;
+    }
 }

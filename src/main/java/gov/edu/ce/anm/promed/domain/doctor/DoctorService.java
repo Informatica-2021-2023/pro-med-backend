@@ -60,7 +60,7 @@ public class DoctorService {
 
     public Map<String, Boolean> checkDaySchedulesAvailability(UUID doctorId, LocalDate localDate) {
         Map<String, Boolean> appointments = new HashMap<>();
-        Doctor doc = doctorRepository.findById(doctorId).get();
+        var doc = doctorRepository.findById(doctorId).get();
         getSchedulesAsGlobalDates(localDate).forEach((string, instant) -> {
             boolean isAppointmentAvailable = false;
             for (int i = 0; i < doc.getAppointments().size(); i++) {
